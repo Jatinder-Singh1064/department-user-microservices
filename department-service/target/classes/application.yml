@@ -1,0 +1,32 @@
+server:
+  port: 9001
+
+#Removed from here - as we are using Configuration from GitHub Config Server file
+##EUREKA Client - Service Discovery and Registry Configuration
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#      hostname: localhost
+
+#POSTGRESQL Database Configuration
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/dept_userDB
+    username: postgres
+    password: password
+    driverClassName: org.postgresql.Driver
+  application:
+    name: DEPARTMENT-SERVICE
+  zipkin:
+    base-url: http://127.0.0.1:9411/

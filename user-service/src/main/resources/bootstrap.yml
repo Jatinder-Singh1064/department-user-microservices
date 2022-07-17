@@ -1,0 +1,5 @@
+spring:
+  cloud: #SPRING CLOUD CONFIG SERVER ENABLED Configuration
+    config:
+      enabled: true
+      uri: http://localhost:9296
