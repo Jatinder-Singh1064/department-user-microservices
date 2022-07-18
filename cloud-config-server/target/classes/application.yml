@@ -1,0 +1,15 @@
+server:
+  port: 9296
+
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:    #SPRING CLOUD CONFIG SERVER with GIT REPO Configuration
+    config:
+      server:
+        git:
+          uri: https://github.com/Jatinder-Singh1064/dept-user-config-server
+          clone-on-start: true
+          username: Jatinder-Singh1064
+          password: Jeetuu@26gh
+#          skipSslValidation: true

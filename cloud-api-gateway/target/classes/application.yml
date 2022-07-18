@@ -1,0 +1,55 @@
+server:
+  port: 9191
+
+#CLOUD API-GATEWAY Configuration
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:       #This is for API-Gateway
+            - Path=/users/**
+          filters:          #This is for CircuitBreaker
+            - name: CircuitBreaker
+              args:
+                name: USER-SERVICE
+                fallbackuri: forward:/userServiceFallback
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:       #This is for API-Gateway
+            - Path=/departments/**
+          filters:          #This is for CircuitBreaker
+            - name: CircuitBreaker
+              args:
+                name: DEPARTMENT-SERVICE
+                fallbackuri: forward:/departmentServiceFallback
+
+#HYSTRIX Circuit Breaker Configuration
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+#ACTUATOR Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+#Removed from here - as we are using Configuration from GitHub Config Server file
+##EUREKA Client - Service Discovery and Registry Configuration
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    hostname: localhost

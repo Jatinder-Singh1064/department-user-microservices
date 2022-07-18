@@ -1,0 +1,8 @@
+server:
+  port: 8761
+
+#EUREKA Client - Service Discovery and Registry Configuration  - This project is disabled to be discovered
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

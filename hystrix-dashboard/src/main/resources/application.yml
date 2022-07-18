@@ -1,0 +1,22 @@
+server:
+  port: 9295
+
+spring:
+  application:
+    name: HYSTRIX-DASHBOARD
+
+#Removed from here - as we are using Configuration from GitHub Config Server file
+##EUREKA Client - Service Discovery and Registry Configuration
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    hostname: localhost
+
+#HYSTRIX Dashboard Configuration
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"
